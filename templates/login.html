@@ -80,11 +80,35 @@ button:hover {
 
     <h2>Login</h2>
 
-    <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Login</button>
-    </form>
+<form method="post">
+  {% csrf_token %}
+
+  <label>Username</label>
+  <div style="margin-bottom:14px;">
+    {{ form.username }}
+  </div>
+
+  <label>Password</label>
+  <div style="position:relative; margin-bottom:14px;">
+    {{ form.password }}
+
+    <span onclick="togglePassword()"
+      style="
+        position:absolute;
+        right:12px;
+        top:50%;
+        transform:translateY(-50%);
+        cursor:pointer;
+        font-size:12px;
+        color:#60a5fa;
+        user-select:none;
+      ">
+      Show
+    </span>
+  </div>
+
+  <button type="submit">Login</button>
+</form>
 
     <div style="margin-top:15px; text-align:center;">
 
@@ -105,4 +129,18 @@ button:hover {
   </div>
 </div>
 
+<script>
+function togglePassword() {
+    const passwordInput = document.querySelector('input[type="password"]');
+    const toggleText = event.target;
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        toggleText.textContent = "Hide";
+    } else {
+        passwordInput.type = "password";
+        toggleText.textContent = "Show";
+    }
+}
+</script>
 {% endblock %}

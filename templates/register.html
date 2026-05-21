@@ -10,16 +10,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 70vh;
+  min-height: 75vh;
+  padding: 20px;
 }
 
 .auth-card {
   width: 100%;
-  max-width: 420px;
+  max-width: 450px;
   background: #111827;
-  padding: 25px;
-  border-radius: 14px;
+  padding: 28px;
+  border-radius: 16px;
   border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
 .auth-card h2 {
@@ -28,29 +30,30 @@
   color: #60a5fa;
 }
 
-form p {
-  margin-bottom: 12px;
-}
-
+/* INPUTS */
 input {
   width: 100%;
   padding: 12px;
-  border-radius: 8px;
+  border-radius: 10px;
   border: none;
   background: #1f2937;
   color: white;
   outline: none;
+  margin-bottom: 12px;
 }
 
+/* FOCUS */
 input:focus {
   border: 1px solid #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
 }
 
+/* BUTTON */
 button {
   width: 100%;
   padding: 12px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   background: #22c55e;
   color: white;
   font-weight: bold;
@@ -61,6 +64,7 @@ button:hover {
   background: #16a34a;
 }
 
+/* LINK */
 .link {
   text-align: center;
   margin-top: 15px;
@@ -73,16 +77,50 @@ button:hover {
   text-decoration: none;
 }
 
+/* PASSWORD WRAPPER */
+.password-wrapper {
+  position: relative;
+}
+
+/* SHOW/HIDE */
+.toggle {
+  position: absolute;
+  right: 12px;
+  top: 40%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #60a5fa;
+  cursor: pointer;
+}
+
 </style>
 
 <div class="auth-container">
   <div class="auth-card">
 
-    <h2>Create Account</h2>
+    <h2>Create Account 🚀</h2>
 
     <form method="post">
       {% csrf_token %}
-      {{ form.as_p }}
+
+      <!-- USERNAME -->
+      {{ form.username }}
+
+      <!-- EMAIL -->
+      {{ form.email }}
+
+      <!-- PASSWORD 1 -->
+      <div class="password-wrapper">
+        {{ form.password1 }}
+        <span class="toggle" onclick="togglePass('id_password1', this)">Show</span>
+      </div>
+
+      <!-- PASSWORD 2 -->
+      <div class="password-wrapper">
+        {{ form.password2 }}
+        <span class="toggle" onclick="togglePass('id_password2', this)">Show</span>
+      </div>
+
       <button type="submit">Sign Up</button>
     </form>
 
@@ -93,5 +131,19 @@ button:hover {
 
   </div>
 </div>
+
+<script>
+function togglePass(id, el) {
+    const input = document.getElementById(id);
+
+    if (input.type === "password") {
+        input.type = "text";
+        el.innerText = "Hide";
+    } else {
+        input.type = "password";
+        el.innerText = "Show";
+    }
+}
+</script>
 
 {% endblock %}
