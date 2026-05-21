@@ -179,3 +179,17 @@ def mybooks(request):
     return render(request, 'mybooks.html', {
         'unlocked_books': unlocked_books
     })
+
+
+from django.contrib.auth.views import PasswordResetConfirmView
+from .forms import CustomSetPasswordForm
+
+class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    form_class = CustomSetPasswordForm
+
+from .forms import LoginForm
+from django.contrib.auth.views import LoginView
+
+class CustomLoginView(LoginView):
+    authentication_form = LoginForm
+    template_name = "login.html"
