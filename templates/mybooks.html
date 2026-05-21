@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+
+{% block title %}My Books{% endblock %}
+
+{% block content %}
+
+<style>
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #111827, #0b1220);
+  padding: 25px;
+  border-radius: 16px;
+  margin-bottom: 25px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.hero img {
+  width: 140px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.hero-text h1 {
+  color: #60a5fa;
+  font-size: 22px;
+}
+
+.hero-text p {
+  color: #cbd5e1;
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+/* SECTION TITLE */
+.section-title {
+  margin: 20px 0 10px;
+  font-size: 16px;
+  color: #e5e7eb;
+}
+
+/* NETFLIX ROW */
+.row {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
+}
+
+.row::-webkit-scrollbar {
+  display: none;
+}
+
+/* CARD */
+.card {
+  min-width: 160px;
+  background: #111827;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06);
+  scroll-snap-align: start;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  border-color: #3b82f6;
+}
+
+/* COVER */
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+/* BODY */
+.card-body {
+  padding: 10px;
+}
+
+/* TITLE */
+.title {
+  font-size: 13px;
+  color: #e5e7eb;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+/* DESCRIPTION */
+.desc {
+  font-size: 11px;
+  color: #9ca3af;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+/* BUTTON */
+.btn {
+  width: 100%;
+  padding: 7px;
+  border: none;
+  border-radius: 8px;
+  background: #22c55e;
+  color: white;
+  font-size: 11px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background: #16a34a;
+}
+
+/* EMPTY */
+.empty {
+  background: #111827;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  color: #9ca3af;
+}
+
+</style>
+
+{% if unlocked_books %}
+
+<!-- HERO -->
+<div class="hero">
+
+  {% with unlocked_books.0 as first %}
+
+    {% if first.book.cover %}
+      <img src="{{ first.book.cover.url }}">
+    {% endif %}
+
+    <div class="hero-text">
+      <h1>📚 My Library</h1>
+      <p>
+        Welcome to your personal reading space. Continue learning from your unlocked
+        Petroleum Engineering books and build your academic strength from Year 1 to Final Year.
+      </p>
+    </div>
+
+  {% endwith %}
+
+</div>
+
+<!-- BOOK LIST -->
+<h2 class="section-title">🔥 Continue Reading</h2>
+
+<div class="row">
+
+  {% for item in unlocked_books %}
+
+  <div class="card">
+
+    <!-- COVER -->
+    {% if item.book.cover %}
+      <img src="{{ item.book.cover.url }}">
+    {% else %}
+      <img src="https://via.placeholder.com/300x400?text=No+Cover">
+    {% endif %}
+
+    <div class="card-body">
+
+      <!-- TITLE -->
+      <div class="title">
+        {{ item.book.title|truncatechars:20 }}
+      </div>
+
+      <!-- DESCRIPTION -->
+      <div class="desc">
+        {{ item.book.description|truncatewords:12 }}
+      </div>
+
+      <!-- BUTTON -->
+      <a href="{{ item.book.file.url }}">
+        <button class="btn">📖 Read Book</button>
+      </a>
+
+    </div>
+
+  </div>
+
+  {% endfor %}
+
+</div>
+
+{% else %}
+
+<div class="empty">
+  <p>You don’t have any books yet 🔒</p>
+</div>
+
+{% endif %}
+
+{% endblock %}

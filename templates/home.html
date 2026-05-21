@@ -1,0 +1,197 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<style>
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #0f172a, #111827);
+  padding: 40px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 25px;
+}
+
+.hero h1 {
+  font-size: 30px;
+  color: #60a5fa;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  color: #cbd5e1;
+  line-height: 1.7;
+  font-size: 15px;
+  max-width: 800px;
+}
+
+/* SECTION */
+.section {
+  background: #111827;
+  padding: 25px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 20px;
+}
+
+.section h2 {
+  color: #93c5fd;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.section p {
+  color: #cbd5e1;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+/* HIGHLIGHT BOXES */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.box {
+  background: #1f2937;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.box h3 {
+  color: #60a5fa;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.box p {
+  font-size: 13px;
+  color: #9ca3af;
+  line-height: 1.5;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding: 25px;
+  }
+
+  .hero h1 {
+    font-size: 22px;
+  }
+}
+
+</style>
+
+<!-- HERO SECTION -->
+<div class="hero">
+  <h1>📚 Welcome to PetroLearn Hub</h1>
+
+  <p>
+    Welcome to <strong>PetroLearn Hub</strong>, a dedicated digital learning platform
+    designed specifically for <strong>Petroleum Engineering students of the University of Port Harcourt (Uniport)</strong>.
+    This platform was created to simplify access to essential academic materials, motivational resources,
+    and structured books from <strong>Year One through Final Year</strong>.
+  </p>
+
+  <p>
+    In the field of Petroleum Engineering, success is not only determined by classroom learning,
+    but also by continuous self-development, exposure to technical knowledge, and consistent practice.
+    PetroLearn Hub bridges that gap by providing students with curated books that support both academic excellence
+    and professional growth in the oil and gas industry.
+  </p>
+</div>
+
+<!-- ABOUT SECTION -->
+<div class="section">
+  <h2>🎯 About This Platform</h2>
+
+  <p>
+    This platform serves as a centralized digital library where students can access educational materials
+    covering core Petroleum Engineering disciplines such as Reservoir Engineering, Drilling Engineering,
+    Production Technology, Petrophysics, Formation Evaluation, and more.
+  </p>
+
+  <p>
+    It is designed to support students from their foundational Year One courses all the way to advanced Final Year topics,
+    ensuring a smooth academic journey and better understanding of engineering principles.
+  </p>
+</div>
+
+<!-- WHY IT EXISTS -->
+<div class="section">
+  <h2>🚀 Why PetroLearn Hub Was Created</h2>
+
+  <p>
+    Many students face challenges accessing structured and affordable academic resources.
+    PetroLearn Hub was built to solve this problem by providing a centralized, easy-to-use platform
+    that makes learning materials accessible anytime, anywhere.
+  </p>
+
+  <p>
+    It also encourages self-paced learning, allowing students to revisit important concepts,
+    strengthen weak areas, and prepare effectively for exams, projects, and real-world engineering challenges.
+  </p>
+</div>
+
+<!-- FEATURES -->
+<div class="section">
+  <h2>📖 What You Will Find Here</h2>
+
+  <div class="grid">
+
+    <div class="box">
+      <h3>📘 Academic Books</h3>
+      <p>
+        Well-structured Petroleum Engineering books covering all levels from Year 1 to Final Year.
+      </p>
+    </div>
+
+    <div class="box">
+      <h3>🧠 Technical Knowledge</h3>
+      <p>
+        Deep learning materials in Reservoir, Drilling, Production, and Petrophysics.
+      </p>
+    </div>
+
+    <div class="box">
+      <h3>📈 Career Growth</h3>
+      <p>
+        Resources that prepare students for internships, industry exposure, and oil & gas careers.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- MOTIVATION -->
+<div class="section">
+  <h2>💡 Final Message</h2>
+
+  <p>
+    Petroleum Engineering is a challenging but highly rewarding discipline.
+    Success requires consistency, discipline, and the right learning materials.
+    PetroLearn Hub is here to support you on that journey.
+  </p>
+
+  <p>
+    Whether you are just starting in Year One or preparing for graduation,
+    this platform is designed to guide you step-by-step toward academic excellence and professional readiness.
+  </p>
+
+  <p style="color:#60a5fa; font-weight:bold;">
+    Stay focused, keep learning, and build your future in the energy industry.
+  </p>
+</div>
+
+{% endblock %}

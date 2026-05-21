@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block content %}
+
+<style>
+
+.book-wrapper {
+  max-width: 900px;
+  margin: auto;
+}
+
+.book-card {
+  background: #111827;
+  border-radius: 14px;
+  padding: 25px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.book-image {
+  width: 100%;
+  height: 300px;
+  background: #1f2937;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.book-title {
+  font-size: 30px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.book-description {
+  color: #cbd5e1;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.price-box {
+  margin-bottom: 20px;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+.new-price {
+  color: #22c55e;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  font-size: 15px;
+}
+
+.buy-btn {
+  background: #3b82f6;
+}
+
+.read-btn {
+  background: #22c55e;
+}
+
+@media(max-width:768px){
+
+  .book-title{
+    font-size:22px;
+  }
+
+  .book-description{
+    font-size:14px;
+  }
+
+  .book-image{
+    height:200px;
+  }
+
+}
+
+</style>
+
+<div class="book-wrapper">
+
+  <div class="book-card">
+
+    <!-- IMAGE -->
+    <div class="book-image">
+      {% if book.cover %}
+        <img src="{{ book.cover.url }}" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
+      {% endif %}
+    </div>
+
+    <!-- TITLE -->
+    <h1 class="book-title">
+      {{ book.title }}
+    </h1>
+
+    <!-- DESCRIPTION -->
+    <div class="book-description">
+      {{ book.description }}
+    </div>
+
+    <!-- PRICE -->
+    <div class="price-box">
+
+      {% if book.has_discount %}
+
+        <div class="old-price">
+          ₦{{ book.price }}
+        </div>
+
+        <div class="new-price">
+          ₦{{ book.discounted_price }}
+        </div>
+
+      {% else %}
+
+        <div class="new-price">
+          ₦{{ book.price }}
+        </div>
+
+      {% endif %}
+
+    </div>
+
+    <!-- ACCESS -->
+    {% if unlocked %}
+
+      <a href="{{ book.file.url }}">
+
+        <button class="btn read-btn">
+          📖 Read Book
+        </button>
+
+      </a>
+
+    {% else %}
+
+      <a
+        href="https://wa.me/2347068848255?text=Hello%20I%20want%20to%20buy%20the%20book%20{{ book.title|urlencode }}.%20How%20do%20I%20purchase%20it%3F"
+        target="_blank"
+      >
+
+        <button class="btn buy-btn">
+          🔓 Buy / Unlock Book
+        </button>
+
+      </a>
+
+    {% endif %}
+
+  </div>
+
+</div>
+
+{% endblock %}
